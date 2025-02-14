@@ -3,7 +3,7 @@ package Servlet;
 import Bean.Annonce;
 import Connection.ConnectionDB;
 import DAO.DAO;
-import DAO.AnnonceDAO;
+import DAO.AnnonceDAOV2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class AnnonceList extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            DAO<Annonce> annonceDAO = new AnnonceDAO(ConnectionDB.getInstance());
+            AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
             ArrayList<Annonce> annonceList = annonceDAO.list();
 
             request.setAttribute("annonceList", annonceList);

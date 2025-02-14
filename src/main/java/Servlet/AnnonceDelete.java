@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import Bean.Annonce;
 import Connection.ConnectionDB;
-import DAO.AnnonceDAO;
+import DAO.AnnonceDAOV2;
 
 @WebServlet("/AnnonceDelete")
 public class AnnonceDelete extends HttpServlet {
@@ -28,7 +28,7 @@ public class AnnonceDelete extends HttpServlet {
 
             // Connexion à la base de données
             Connection connection = ConnectionDB.getInstance();
-            AnnonceDAO annonceDAO = new AnnonceDAO(connection);
+            AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
 
             Annonce annonce = annonceDAO.find(annonceId);
 

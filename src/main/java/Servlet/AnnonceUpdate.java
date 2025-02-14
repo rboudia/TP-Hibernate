@@ -1,6 +1,6 @@
 package Servlet;
 
-import DAO.AnnonceDAO;
+import DAO.AnnonceDAOV2;
 import Bean.Annonce;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ public class AnnonceUpdate extends HttpServlet {
             try {
                 Connection connection = ConnectionDB.getInstance();
 
-                AnnonceDAO annonceDAO = new AnnonceDAO(connection);
+                AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
                 Annonce annonce = annonceDAO.find(Integer.parseInt(annonceId));
 
                 if (annonce != null) {
@@ -55,7 +55,7 @@ public class AnnonceUpdate extends HttpServlet {
             annonce.setMail(request.getParameter("mail"));
 
             Connection connection = ConnectionDB.getInstance();
-            AnnonceDAO annonceDAO = new AnnonceDAO(connection);
+            AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
             annonceDAO.update(annonce);
 
             annonce = annonceDAO.find(Integer.parseInt(request.getParameter("id")));

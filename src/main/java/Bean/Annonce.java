@@ -1,15 +1,32 @@
 package Bean;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+@Entity
+@Table(name = "annonce")
 public class Annonce {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "adress")
     private String adress;
+
+    @Column(name = "mail")
     private String mail;
+
+    @Column(name = "date")
     private Timestamp date;
+
 
     public Annonce() {}
 

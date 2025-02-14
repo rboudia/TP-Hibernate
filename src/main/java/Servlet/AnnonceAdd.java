@@ -2,7 +2,7 @@ package Servlet;
 
 import Bean.Annonce;
 import DAO.DAO;
-import DAO.AnnonceDAO;
+import DAO.AnnonceDAOV2;
 import Connection.ConnectionDB;
 
 import javax.servlet.ServletException;
@@ -40,13 +40,13 @@ public class AnnonceAdd extends HttpServlet {
             try {
                 Connection connection = ConnectionDB.getInstance();
 
-                DAO<Annonce> annonceDAO = new AnnonceDAO(connection);
+                AnnonceDAOV2 annonceDAOV2 = new AnnonceDAOV2();
 
-                boolean success = annonceDAO.create(annonce);
+                boolean success = annonceDAOV2.create(annonce);
                 if (success) {
                     request.setAttribute("message", "Annonce added successfully");
                     // Charger la liste des annonces
-                    ArrayList<Annonce> annonceList = annonceDAO.list();
+                    ArrayList<Annonce> annonceList = annonceDAOV2.list();
                     request.setAttribute("annonceList", annonceList);
 
                     // Redirection interne vers la liste des annonces

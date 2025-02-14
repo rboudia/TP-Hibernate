@@ -2,7 +2,7 @@ package Servlet;
 
 import Bean.Annonce;
 import Connection.ConnectionDB;
-import DAO.AnnonceDAO;
+import DAO.AnnonceDAOV2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +25,7 @@ public class AnnonceRead extends HttpServlet {
             try {
                 Connection connection = ConnectionDB.getInstance();
 
-                AnnonceDAO annonceDAO = new AnnonceDAO(connection);
+                AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
                 Annonce annonce = annonceDAO.find(Integer.parseInt(annonceId));
 
                 if (annonce != null) {
