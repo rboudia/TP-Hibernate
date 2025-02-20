@@ -6,21 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import java.lang.reflect.Array;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.List;
 
-public class AnnonceDAOV2  {
+public class AnnonceDAOV2 {
 
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("annoncePU");
 
     public boolean create(Annonce annonce) {
         EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
+
         annonce.setDate(new Timestamp(System.currentTimeMillis()));
 
-        em.persist(annonce);  // ✅ INSERT automatique
+        em.persist(annonce);
         em.getTransaction().commit();
         em.close();
 
@@ -29,19 +29,16 @@ public class AnnonceDAOV2  {
 
     public boolean delete(Annonce annonce) {
         EntityManager em = emf.createEntityManager();
+
         em.getTransaction().begin();
 
-        // Rechercher l'entité pour la rattacher au contexte persistant
         Annonce managedAnnonce = em.find(Annonce.class, annonce.getId());
 
-        if (managedAnnonce != null) {
-            em.remove(managedAnnonce); // ✅ Supprimer uniquement une entité attachée
-        }
-
+        em.remove(managedAnnonce);
         em.getTransaction().commit();
         em.close();
 
-        return managedAnnonce != null;  // Retourne true si suppression réussie
+        return true;
     }
 
 
@@ -50,11 +47,9 @@ public class AnnonceDAOV2  {
 
         em.getTransaction().begin();
 
-        // ✅ Mettre à jour la date avant merge
         annonce.setDate(new Timestamp(System.currentTimeMillis()));
 
-        em.merge(annonce);  // ✅ UPDATE automatique
-
+        em.merge(annonce);
         em.getTransaction().commit();
         em.close();
 
@@ -64,7 +59,7 @@ public class AnnonceDAOV2  {
 
     public Annonce find(int id) {
         EntityManager em = emf.createEntityManager();
-        Annonce annonce = em.find(Annonce.class, id);  // ✅ SELECT automatique
+        Annonce annonce = em.find(Annonce.class, id);
         em.close();
         return annonce;
     }
@@ -72,7 +67,7 @@ public class AnnonceDAOV2  {
     public ArrayList<Annonce> list() {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Annonce> query = em.createQuery("SELECT a FROM Annonce a", Annonce.class);
-        ArrayList<Annonce> annonces = new ArrayList<>(query.getResultList()); // ✅ Conversion correcte
+        ArrayList<Annonce> annonces = new ArrayList<>(query.getResultList());
         em.close();
         return annonces;
     }

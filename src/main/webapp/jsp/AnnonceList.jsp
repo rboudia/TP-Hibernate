@@ -20,6 +20,9 @@
 </head>
 
 <body class="container mt-4">
+
+<%@include file="menu.jsp"%>
+
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="text-primary">Liste des Annonces (${fn:length(annonceList)})</h1>
     <a href="./AnnonceAdd" class="btn btn-success">+ Ajouter une annonce</a>

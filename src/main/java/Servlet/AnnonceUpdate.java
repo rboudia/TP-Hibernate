@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Timestamp;
 
 import Connection.ConnectionDB;
 
@@ -37,7 +36,6 @@ public class AnnonceUpdate extends HttpServlet {
                 request.getRequestDispatcher("/jsp/AnnonceList.jsp").forward(request, response);
             }
         } else {
-            // Si l'ID de l'annonce est manquant
             request.setAttribute("message", "ID d'annonce invalide.");
             request.getRequestDispatcher("/jsp/AnnonceList.jsp").forward(request, response);
         }

@@ -26,13 +26,11 @@ public class AnnonceDelete extends HttpServlet {
 
             int annonceId = Integer.parseInt(idParam);
 
-            // Connexion à la base de données
             Connection connection = ConnectionDB.getInstance();
             AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
 
             Annonce annonce = annonceDAO.find(annonceId);
 
-            // Suppression de l'annonce
             boolean success = annonceDAO.delete(annonce);
 
             if (success) {
@@ -41,11 +39,9 @@ public class AnnonceDelete extends HttpServlet {
                 request.setAttribute("message", "Erreur lors de la suppression !");
             }
 
-            // Recharger la liste des annonces
             ArrayList<Annonce> annonceList = annonceDAO.list();
             request.setAttribute("annonceList", annonceList);
 
-            // Redirection interne vers la liste
             request.getRequestDispatcher("/jsp/AnnonceList.jsp").forward(request, response);
 
         } catch (Exception e) {

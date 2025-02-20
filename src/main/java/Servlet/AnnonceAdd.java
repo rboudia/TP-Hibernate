@@ -1,7 +1,6 @@
 package Servlet;
 
 import Bean.Annonce;
-import DAO.DAO;
 import DAO.AnnonceDAOV2;
 import Connection.ConnectionDB;
 
@@ -18,9 +17,6 @@ import java.util.ArrayList;
 public class AnnonceAdd extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public AnnonceAdd() {
-        super();
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher("/jsp/AnnonceAdd.jsp").forward(request, response);
@@ -44,17 +40,15 @@ public class AnnonceAdd extends HttpServlet {
 
                 boolean success = annonceDAOV2.create(annonce);
                 if (success) {
-                    request.setAttribute("message", "Annonce added successfully");
-                    // Charger la liste des annonces
+                    request.setAttribute("message", "Annonce ajouté avec succès!");
                     ArrayList<Annonce> annonceList = annonceDAOV2.list();
                     request.setAttribute("annonceList", annonceList);
 
-                    // Redirection interne vers la liste des annonces
                     this.getServletContext().getRequestDispatcher("/jsp/AnnonceList.jsp").forward(request, response);
                 }
 
             } catch (Exception e) {
-                request.setAttribute("message", "Error exception");
+                request.setAttribute("message", "Une erreur est survenue");
                 this.getServletContext().getRequestDispatcher("/jsp/AnnonceAdd.jsp").forward(request, response);
                 e.printStackTrace();
             }

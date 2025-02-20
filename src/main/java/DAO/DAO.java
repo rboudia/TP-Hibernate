@@ -3,7 +3,6 @@ package DAO;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.List;
 
 public abstract class DAO<T> {
 

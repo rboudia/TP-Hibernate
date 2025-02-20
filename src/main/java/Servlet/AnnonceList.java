@@ -1,8 +1,6 @@
 package Servlet;
 
 import Bean.Annonce;
-import Connection.ConnectionDB;
-import DAO.DAO;
 import DAO.AnnonceDAOV2;
 
 import javax.servlet.ServletException;
