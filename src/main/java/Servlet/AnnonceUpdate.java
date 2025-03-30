@@ -18,7 +18,7 @@ public class AnnonceUpdate extends HttpServlet {
 
         if (annonceId != null) {
             try {
-                Connection connection = ConnectionDB.getInstance();
+                //Connection connection = ConnectionDB.getInstance();
 
                 AnnonceDAOV2 annonceDAO = new AnnonceDAOV2();
                 Annonce annonce = annonceDAO.find(Integer.parseInt(annonceId));

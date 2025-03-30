@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 public class ConnectionDB {
-    private String url = "jdbc:postgresql://localhost:5432/MasterAnnonce";
+    private String url = "jdbc:postgresql://localhost:6000/MasterAnnonce";
     private String user = "postgres";
     private String passwd = "postgres";
     /**
